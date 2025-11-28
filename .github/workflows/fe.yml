@@ -1,0 +1,27 @@
+name: Deploy to Somee via FTP
+
+on:
+  push:
+    branches:
+      - main     # Nhánh bạn muốn deploy (main hoặc master)
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: FTP Deploy to Somee
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.SOMEE_FTP_SERVER }}
+          username: ${{ secrets.SOMEE_FTP_USERNAME }}
+          password: ${{ secrets.SOMEE_FTP_PASSWORD }}
+          protocol: ftp
+          port: 21
+          local-dir: ./          # Thư mục chứa code
+          server-dir: /          # Thư mục gốc FTP Somee (public folder)
+          timeout: 60000         # tránh lỗi timeout
+          log-level: standard
