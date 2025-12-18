@@ -16,8 +16,8 @@ jobs:
       - name: Deploy qua FTP đến Somee
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          server: 155.254.246.42
-          username: TMyChomTran
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./
           server-dir: /www.oss106.somee.com/
