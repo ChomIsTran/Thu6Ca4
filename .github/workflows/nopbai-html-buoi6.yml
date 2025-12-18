@@ -7,13 +7,12 @@ on:
 
 jobs:
   ftp-deploy:
-    name: 🚀 Deploy bài buổi 6 lên Somee
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout mã nguồn
+      - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Deploy qua FTP đến Somee
+      - name: Deploy to Somee
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets.FTP_HOST }}
