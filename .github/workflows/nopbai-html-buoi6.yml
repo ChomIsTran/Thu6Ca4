@@ -1,0 +1,23 @@
+name: Nop bai HTML buoi 6
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  ftp-deploy:
+    name: 🚀 Deploy bài buổi 6 lên Somee
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout mã nguồn
+        uses: actions/checkout@v3
+
+      - name: Deploy qua FTP đến Somee
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ftp.oss106.somee.com
+          username: TMyChomTran
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./
+          server-dir: /www.oss106.somee.com/
